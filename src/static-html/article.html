@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CulturaEduca - Artigo</title>
+  <!-- Include Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Configure Tailwind with our custom theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              500: '#f97316',
+              600: '#ea580c'
+            }
+          },
+          boxShadow: {
+            'neumorph': '9px 9px 18px #e0e0e0, -9px -9px 18px #ffffff',
+            'neumorph-sm': '5px 5px 10px #e0e0e0, -5px -5px 10px #ffffff',
+            'neumorph-lg': '10px 10px 20px #e0e0e0, -10px -10px 20px #ffffff',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .neumorph {
+      box-shadow: 9px 9px 18px #e0e0e0, -9px -9px 18px #ffffff;
+      border-radius: 1rem;
+      background-color: #f5f5f5;
+    }
+    .neumorph-sm {
+      box-shadow: 5px 5px 10px #e0e0e0, -5px -5px 10px #ffffff;
+      border-radius: 0.75rem;
+      background-color: #f5f5f5;
+    }
+    .prose {
+      max-width: 65ch;
+      font-size: 1.125rem;
+      line-height: 1.75;
+    }
+    .prose p {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+    }
+    .prose h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+    .prose ul {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      list-style-type: disc;
+      padding-left: 1.625em;
+    }
+    .prose li {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#faf8f5]">
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 py-3 bg-[#faf8f5]/95 backdrop-blur-md shadow-md">
+    <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 transition-transform duration-300 ease-in-out hover:scale-[1.02]">
+        <i class="fas fa-book-open text-orange-500 text-xl"></i>
+        <span class="text-xl font-semibold tracking-tight">CulturaEduca</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="/" class="relative text-gray-800/80 font-medium transition-colors duration-200 hover:text-orange-500 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">
+          Início
+        </a>
+        <a href="/educacao" class="relative text-gray-800/80 font-medium transition-colors duration-200 hover:text-orange-500 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">
+          Educação
+        </a>
+        <a href="/cultura" class="relative text-gray-800/80 font-medium transition-colors duration-200 hover:text-orange-500 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">
+          Cultura
+        </a>
+        <a href="/opiniao" class="relative text-gray-800/80 font-medium transition-colors duration-200 hover:text-orange-500 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">
+          Opinião
+        </a>
+        <a href="/sobre" class="relative text-gray-800/80 font-medium transition-colors duration-200 hover:text-orange-500 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">
+          Sobre
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-button"
+        class="p-2 md:hidden text-gray-700 hover:text-orange-500 transition-colors"
+        aria-label="Abrir menu"
+      >
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 bg-[#faf8f5]/95 backdrop-blur-md shadow-md">
+      <nav class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="/" class="block py-2 px-4 text-gray-800/80 font-medium transition-colors hover:text-orange-500 hover:bg-gray-100 rounded-lg">
+          Início
+        </a>
+        <a href="/educacao" class="block py-2 px-4 text-gray-800/80 font-medium transition-colors hover:text-orange-500 hover:bg-gray-100 rounded-lg">
+          Educação
+        </a>
+        <a href="/cultura" class="block py-2 px-4 text-gray-800/80 font-medium transition-colors hover:text-orange-500 hover:bg-gray-100 rounded-lg">
+          Cultura
+        </a>
+        <a href="/opiniao" class="block py-2 px-4 text-gray-800/80 font-medium transition-colors hover:text-orange-500 hover:bg-gray-100 rounded-lg">
+          Opinião
+        </a>
+        <a href="/sobre" class="block py-2 px-4 text-gray-800/80 font-medium transition-colors hover:text-orange-500 hover:bg-gray-100 rounded-lg">
+          Sobre
+        </a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Article Header -->
+  <header class="relative h-[400px] md:h-[500px] overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 z-10"></div>
+    <img 
+      src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=1470&auto=format&fit=crop" 
+      alt="A Importância da Educação Artística nas Escolas Públicas" 
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 z-20 flex items-center">
+      <div class="container mx-auto px-4 pt-16">
+        <a 
+          href="/" 
+          class="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors"
+        >
+          <i class="fas fa-arrow-left mr-2 h-4 w-4"></i>
+          Voltar para a página inicial
+        </a>
+        
+        <span class="inline-block bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+          Educação
+        </span>
+        
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl leading-tight">
+          A Importância da Educação Artística nas Escolas Públicas
+        </h1>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Article Meta -->
+  <div class="bg-secondary py-6 border-b border-border">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap items-center text-gray-500 gap-6">
+        <div class="flex items-center">
+          <i class="fas fa-user h-4 w-4 mr-2"></i>
+          <span>Renata Campos</span>
+          <span class="text-sm ml-2 italic">(Professora e Pesquisadora em Educação Artística)</span>
+        </div>
+        
+        <div class="flex items-center">
+          <i class="fas fa-calendar h-4 w-4 mr-2"></i>
+          <span>15 de maio de 2023</span>
+        </div>
+        
+        <div class="flex items-center flex-wrap gap-2">
+          <i class="fas fa-tag h-4 w-4 mr-1"></i>
+          <span class="text-xs bg-[#faf8f5] px-2 py-1 rounded-full">educação pública</span>
+          <span class="text-xs bg-[#faf8f5] px-2 py-1 rounded-full">artes</span>
+          <span class="text-xs bg-[#faf8f5] px-2 py-1 rounded-full">currículo escolar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Article Content -->
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-3xl mx-auto">
+      <article class="prose">
+        <p>A educação artística nas escolas públicas brasileiras enfrenta desafios significativos, desde a falta de recursos até o não reconhecimento de sua importância no currículo. No entanto, estudos recentes comprovam que a integração das artes no ensino regular não apenas enriquece a experiência educacional, mas também desenvolve habilidades críticas para o futuro.</p>
+        
+        <p>Quando estudantes têm acesso regular às artes visuais, música, teatro e dança, desenvolvem competências como pensamento crítico, criatividade e resolução de problemas de maneiras que outras disciplinas nem sempre conseguem abordar. Em um mundo cada vez mais automatizado, essas habilidades humanas tornam-se diferenciais no mercado de trabalho.</p>
+        
+        <h2>Benefícios Comprovados</h2>
+        
+        <p>Pesquisas da Fundação Nacional de Arte indicam que estudantes com acesso regular ao ensino de artes apresentam:</p>
+        
+        <ul>
+          <li>26% maior probabilidade de se engajarem em serviço comunitário</li>
+          <li>20% menor probabilidade de abandono escolar</li>
+          <li>Melhores resultados em testes padronizados de matemática e leitura</li>
+        </ul>
+        
+        <p>Além disso, a educação artística tem se mostrado particularmente eficaz em escolas em áreas socialmente vulneráveis, onde funciona como ferramenta de expressão e processamento de experiências complexas.</p>
+        
+        <h2>Caminhos para Mudança</h2>
+        
+        <p>A transformação desse cenário exige ações em múltiplas frentes. Primeiro, é essencial rever políticas públicas que determinam o financiamento e currículo das escolas. A arte não pode ser tratada como atividade extracurricular ou dispensável.</p>
+        
+        <p>Segundo, a formação continuada de professores deve incluir metodologias que integrem expressões artísticas em diversas disciplinas, criando aprendizagem interdisciplinar.</p>
+        
+        <p>Por fim, parcerias com instituições culturais locais podem trazer artistas para as escolas e levar estudantes a museus e apresentações, ampliando o repertório cultural e as possibilidades de aprendizagem.</p>
+        
+        <p>O Brasil, com sua rica diversidade cultural, tem potencial para liderar inovações em educação artística integrada. Para isso, precisamos reconhecer que arte na escola não é luxo, mas necessidade fundamental para formar cidadãos completos, criativos e preparados para os desafios contemporâneos.</p>
+      </article>
+      
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <h3 class="text-xl font-bold mb-4">Sobre o autor</h3>
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center text-2xl font-bold text-orange-500">
+            R
+          </div>
+          <div>
+            <h4 class="font-bold">Renata Campos</h4>
+            <p class="text-gray-500">Professora e Pesquisadora em Educação Artística</p>
+            <p class="mt-2">
+              Autora de artigos sobre educação e temas relacionados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Related Articles -->
+  <section class="bg-secondary/50 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8 text-center">Artigos Relacionados</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Related Article Card 1 -->
+        <div class="neumorph overflow-hidden transition-all duration-300 hover:translate-y-[-5px]">
+          <div class="relative h-48 overflow-hidden rounded-t-xl">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" 
+              alt="Metodologias Ativas na Educação Básica" 
+              class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-4 left-4 z-20 bg-orange-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+              Educação
+            </span>
+          </div>
+          
+          <div class="p-6">
+            <div class="text-sm text-gray-500 mb-2">20 de Abril, 2023</div>
+            <h3 class="text-xl font-bold tracking-tight mb-2 line-clamp-2">Metodologias Ativas na Educação Básica</h3>
+            <p class="text-gray-500 line-clamp-3 mb-4">Como as metodologias ativas de aprendizagem estão transformando o ensino básico e preparando alunos para os desafios futuros.</p>
+            
+            <a 
+              href="/artigo/5" 
+              class="inline-flex items-center text-orange-500 font-medium hover:text-orange-600 transition-colors group"
+            >
+              Leia Mais
+              <i class="fas fa-arrow-right ml-1 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Related Article Card 2 -->
+        <div class="neumorph overflow-hidden transition-all duration-300 hover:translate-y-[-5px]">
+          <div class="relative h-48 overflow-hidden rounded-t-xl">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1594608661623-aa0bd3a69799?q=80&w=1374&auto=format&fit=crop" 
+              alt="Por Que Precisamos Repensar a Avaliação Escolar" 
+              class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-4 left-4 z-20 bg-orange-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+              Educação
+            </span>
+          </div>
+          
+          <div class="p-6">
+            <div class="text-sm text-gray-500 mb-2">5 de setembro de 2023</div>
+            <h3 class="text-xl font-bold tracking-tight mb-2 line-clamp-2">Por Que Precisamos Repensar a Avaliação Escolar</h3>
+            <p class="text-gray-500 line-clamp-3 mb-4">O sistema tradicional de provas e notas ainda é adequado para medir o verdadeiro aprendizado no século XXI?</p>
+            
+            <a 
+              href="/artigo/5" 
+              class="inline-flex items-center text-orange-500 font-medium hover:text-orange-600 transition-colors group"
+            >
+              Leia Mais
+              <i class="fas fa-arrow-right ml-1 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Related Article Card 3 -->
+        <div class="neumorph overflow-hidden transition-all duration-300 hover:translate-y-[-5px]">
+          <div class="relative h-48 overflow-hidden rounded-t-xl">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1470&auto=format&fit=crop" 
+              alt="O Ensino a Distância é o Futuro da Educação?" 
+              class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-4 left-4 z-20 bg-orange-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+              Educação
+            </span>
+          </div>
+          
+          <div class="p-6">
+            <div class="text-sm text-gray-500 mb-2">22 de julho de 2023</div>
+            <h3 class="text-xl font-bold tracking-tight mb-2 line-clamp-2">O Ensino a Distância é o Futuro da Educação?</h3>
+            <p class="text-gray-500 line-clamp-3 mb-4">Após a pandemia, o ensino remoto se consolidou, mas ainda enfrenta questionamentos sobre qualidade e acessibilidade.</p>
+            
+            <a 
+              href="/artigo/3" 
+              class="inline-flex items-center text-orange-500 font-medium hover:text-orange-600 transition-colors group"
+            >
+              Leia Mais
+              <i class="fas fa-arrow-right ml-1 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="font-bold text-lg mb-4">CulturaEduca</h3>
+          <p class="text-gray-500">
+            Reflexões e análises sobre educação e cultura para um mundo em transformação.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">Categorias</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="/educacao" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Educação
+              </a>
+            </li>
+            <li>
+              <a href="/cultura" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Cultura
+              </a>
+            </li>
+            <li>
+              <a href="/opiniao" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Opinião
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="/sobre" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Sobre
+              </a>
+            </li>
+            <li>
+              <a href="/contato" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Contato
+              </a>
+            </li>
+            <li>
+              <a href="/termos" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Termos de Uso
+              </a>
+            </li>
+            <li>
+              <a href="/privacidade" class="text-gray-500 hover:text-orange-500 transition-colors">
+                Política de Privacidade
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">Contato</h3>
+          <address class="not-italic text-gray-500">
+            <p>contato@culturaeduca.com.br</p>
+            <p>São Paulo, SP - Brasil</p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-200 mt-12 pt-8 text-center text-gray-500">
+        <p>© <span id="current-year">2023</span> CulturaEduca. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for mobile menu toggle -->
+  <script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      
+      // Change icon
+      const icon = menuButton.querySelector('i');
+      if (icon.classList.contains('fa-bars')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+        menuButton.setAttribute('aria-label', 'Fechar menu');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+        menuButton.setAttribute('aria-label', 'Abrir menu');
+      }
+    });
+    
+    // Update current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
