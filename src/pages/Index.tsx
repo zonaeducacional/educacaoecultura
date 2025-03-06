@@ -52,7 +52,7 @@ const Index = () => {
             {categories.map((category) => (
               <Link 
                 key={category} 
-                to={`/${category.toLowerCase()}`}
+                to={`/${encodeURIComponent(category.toLowerCase())}`}
                 className="neumorph-sm flex flex-col items-center justify-center p-10 transition-all duration-300 hover:translate-y-[-5px]"
               >
                 <h3 className="text-xl font-bold mb-2">{category}</h3>
@@ -136,7 +136,7 @@ const Index = () => {
               <ul className="space-y-2">
                 {categories.map((category) => (
                   <li key={category}>
-                    <Link to={`/${category.toLowerCase()}`} className="text-muted-foreground hover:text-orange-500 transition-colors">
+                    <Link to={`/${encodeURIComponent(category.toLowerCase())}`} className="text-muted-foreground hover:text-orange-500 transition-colors">
                       {category}
                     </Link>
                   </li>

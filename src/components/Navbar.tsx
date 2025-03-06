@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,11 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Close mobile menu when route changes
+    setIsMenuOpen(false);
+  }, [location]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -40,9 +46,9 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <NavLink to="/">Início</NavLink>
-          <NavLink to="/educacao">Educação</NavLink>
+          <NavLink to="/educação">Educação</NavLink>
           <NavLink to="/cultura">Cultura</NavLink>
-          <NavLink to="/opiniao">Opinião</NavLink>
+          <NavLink to="/opinião">Opinião</NavLink>
           <NavLink to="/sobre">Sobre</NavLink>
         </nav>
 
@@ -64,11 +70,11 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-md animate-fade-in">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <MobileNavLink to="/" onClick={() => setIsMenuOpen(false)}>Início</MobileNavLink>
-            <MobileNavLink to="/educacao" onClick={() => setIsMenuOpen(false)}>Educação</MobileNavLink>
-            <MobileNavLink to="/cultura" onClick={() => setIsMenuOpen(false)}>Cultura</MobileNavLink>
-            <MobileNavLink to="/opiniao" onClick={() => setIsMenuOpen(false)}>Opinião</MobileNavLink>
-            <MobileNavLink to="/sobre" onClick={() => setIsMenuOpen(false)}>Sobre</MobileNavLink>
+            <MobileNavLink to="/">Início</MobileNavLink>
+            <MobileNavLink to="/educação">Educação</MobileNavLink>
+            <MobileNavLink to="/cultura">Cultura</MobileNavLink>
+            <MobileNavLink to="/opinião">Opinião</MobileNavLink>
+            <MobileNavLink to="/sobre">Sobre</MobileNavLink>
           </nav>
         </div>
       )}
@@ -82,10 +88,18 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ to, children }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to || 
+                  (to !== '/' && location.pathname.startsWith(to));
+  
   return (
     <Link 
       to={to} 
-      className="relative text-foreground/80 font-medium transition-colors duration-200 hover:text-orange-500 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+      className={cn(
+        "relative font-medium transition-colors duration-200 hover:text-orange-500",
+        "after:content-[''] after:absolute after:h-0.5 after:bg-orange-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300",
+        isActive ? "text-orange-500 after:w-full" : "text-foreground/80 after:w-0 hover:after:w-full"
+      )}
     >
       {children}
     </Link>
@@ -93,14 +107,23 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children }) => {
 };
 
 interface MobileNavLinkProps extends NavLinkProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const MobileNavLink: React.FC<MobileNavLinkProps> = ({ to, children, onClick }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to || 
+                  (to !== '/' && location.pathname.startsWith(to));
+  
   return (
     <Link 
       to={to} 
-      className="block py-2 px-4 text-foreground/80 font-medium transition-colors hover:text-orange-500 hover:bg-secondary rounded-lg"
+      className={cn(
+        "block py-2 px-4 font-medium transition-colors rounded-lg",
+        isActive 
+          ? "text-orange-500 bg-secondary" 
+          : "text-foreground/80 hover:text-orange-500 hover:bg-secondary"
+      )}
       onClick={onClick}
     >
       {children}
