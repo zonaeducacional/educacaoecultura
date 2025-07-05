@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Minimalista</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Define a fonte Inter como padrão */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Container Principal -->
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Cabeçalho -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Educação&Cultura</h1>
+            <p class="text-lg text-gray-600 mt-2">Um espaço para compartilhar ideias e conhecimento.</p>
+        </header>
+
+        <!-- Grade de Posts -->
+        <main id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Os posts do blog serão inseridos aqui pelo JavaScript -->
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="text-center mt-16 py-6 border-t border-gray-200">
+            <p class="text-gray-500 mb-2">&copy; 2025 Sérgio Araújo.</p>
+            <p class="text-gray-500">
+                <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.pt_BR" target="_blank" rel="noopener noreferrer" class="hover:underline text-sm">
+                    Licenciado sob Creative Commons Atribuição-NãoComercial 4.0 Internacional
+                </a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- INÍCIO DA ÁREA EDITÁVEL ---
+        // Para adicionar um novo post, basta copiar um dos blocos de código abaixo (das chaves { até }),
+        // colar no final da lista e alterar o conteúdo.
+        const posts = [
+            {
+                title: "O Programa LEC - Leio, Escrevo e Calculo - Aprova?",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Um Estudo de Caso sobre a Mercantilização da Educação.",
+                imageUrl: "https://placehold.co/600x400/1a202c/ffffff?text=Educação",
+                url: "https://telegra.ph/O-Programa-LEC---Leio-Escrevo-e-Calculo--Aprova-Um-Estudo-de-Caso-sobre-a-Mercantiliza%C3%A7%C3%A3o-da-Educa%C3%A7%C3%A3o-07-05"
+            },
+            {
+                title: "A Precarização do Serviço Público",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "O Caso Alarmante de Salinas da Margarida.",
+                imageUrl: "https://placehold.co/600x400/2d3748/ffffff?text=Serviço+Público",
+                url: "https://telegra.ph/A-Precariza%C3%A7%C3%A3o-do-Servi%C3%A7o-P%C3%BAblico-O-Caso-Alarmante-de-Salinas-da-Margarida-07-05"
+            },
+            {
+                title: "Ao mestre, com carinho",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Uma reflexão sobre a importância e o valor dos educadores.",
+                imageUrl: "https://placehold.co/600x400/4a5568/ffffff?text=Mestre",
+                url: "https://telegra.ph/Ao-mestre-com-carinho-07-05"
+            },
+            {
+                title: "Liberdade e responsabilidade",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Explorando a conexão intrínseca entre ser livre e ser responsável por suas ações.",
+                imageUrl: "https://placehold.co/600x400/718096/ffffff?text=Liberdade",
+                url: "https://telegra.ph/Liberdade-e-responsabilidade-07-05"
+            },
+            {
+                title: "Quais os fundamentos da sua práxis em educação?",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Um convite à reflexão sobre as bases que sustentam a prática pedagógica.",
+                imageUrl: "https://placehold.co/600x400/a0aec0/1a202c?text=Práxis",
+                url: "https://telegra.ph/Quais-os-fundamentos-da-sua-pr%C3%A1xis-em-educa%C3%A7%C3%A3o-07-05"
+            },
+            {
+                title: "Rascunhos sobre vivência, consciência e pensamento crítico",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Fragmentos e ideias sobre como a experiência molda nossa visão de mundo.",
+                imageUrl: "https://placehold.co/600x400/cbd5e0/1a202c?text=Rascunhos",
+                url: "https://telegra.ph/Rascunhos-sobre-viv%C3%AAncia-consci%C3%AAncia-e-pensamento-cr%C3%ADtico-07-05"
+            },
+            {
+                title: "Comunidade de aprendizagem",
+                date: "05 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "A força do coletivo na construção do conhecimento e no desenvolvimento pessoal.",
+                imageUrl: "https://placehold.co/600x400/e2e8f0/2d3748?text=Comunidade",
+                url: "https://telegra.ph/Comunidade-de-aprendizagem-07-05"
+            },
+            {
+                title: "Ensino e aprendizagem",
+                date: "04 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Analisando a dinâmica e os processos envolvidos na troca de conhecimento.",
+                imageUrl: "https://placehold.co/600x400/edf2f7/2d3748?text=Ensino",
+                url: "https://telegra.ph/Ensino-e-aprendizagem-07-04"
+            },
+            {
+                title: "Vá e veja",
+                date: "04 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Um incentivo à exploração, à descoberta e à experiência em primeira mão.",
+                imageUrl: "https://placehold.co/600x400/f7fafc/1a202c?text=Veja",
+                url: "https://telegra.ph/V%C3%A1-e-veja-07-04"
+            },
+             {
+                title: "Ao mestre, com carinho",
+                date: "04 de Julho, 2024",
+                author: "Autor do Blog",
+                summary: "Uma homenagem àqueles que dedicam suas vidas a ensinar e inspirar.",
+                imageUrl: "https://placehold.co/600x400/4a5568/ffffff?text=Homenagem",
+                url: "https://telegra.ph/Ao-mestre-com-carinho-07-04"
+            }
+        ];
+        // --- FIM DA ÁREA EDITÁVEL ---
+
+
+        // Função para renderizar os posts na página
+        function renderPosts() {
+            const postsContainer = document.getElementById('posts-container');
+            if (!postsContainer) return;
+
+            // Limpa o container antes de adicionar os novos posts
+            postsContainer.innerHTML = '';
+
+            // Itera sobre a lista de posts e cria o HTML para cada um
+            posts.forEach(post => {
+                const postElement = document.createElement('article');
+                postElement.className = 'bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 ease-in-out';
+                
+                postElement.innerHTML = `
+                    <a href="${post.url}" target="_blank" rel="noopener noreferrer" class="block">
+                        <img src="${post.imageUrl}" alt="Imagem do post: ${post.title}" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/a0aec0?text=Imagem+Indisponível';">
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">${post.date} &bull; por ${post.author}</p>
+                            <h2 class="text-xl font-bold text-gray-900 mb-3">${post.title}</h2>
+                            <p class="text-gray-700 leading-relaxed">${post.summary}</p>
+                        </div>
+                    </a>
+                `;
+                
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // Garante que o DOM está carregado antes de executar o script
+        document.addEventListener('DOMContentLoaded', renderPosts);
+
+    </script>
+</body>
+</html>
